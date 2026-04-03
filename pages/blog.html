@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Zyne</title>
+  <meta name="description" content="Blog posts and notes on cybersecurity and Linux by Zyne." />
+  <meta name="author" content="Zyne" />
+  <meta name="theme-color" content="#0e0e0f" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0e0f'/><rect x='6' y='20' width='14' height='4' rx='1' fill='%23e8e8e8'/></svg>" />
+  <link rel="stylesheet" href="../assets/css/inner.css" />
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">
+    <span id="theme-icon">☀</span>
+  </button>
+
+  <main class="card">
+
+    <a class="back-btn" href="../index.html"><span class="back-arrow">←</span> back</a>
+
+    <header>
+      <h1 class="page-title">Blog &amp; Notes</h1>
+      <p class="page-sub">Things I learned, documented so I don't forget</p>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- Linux — TO ADD: copy any port-card block, update href, port-title, port-desc, port-tag -->
+    <section>
+      <p class="section-label">Linux</p>
+      <div class="port-grid">
+
+        <a class="port-card" href="https://github.com/yourusername/notes/blob/main/luks-setup.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">How I Set Up Disk Encryption on Arch</span>
+            <span class="port-desc">Step by step LUKS setup from my own install — what worked, what didn't</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">linux</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/notes/blob/main/systemd-boot.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">systemd-boot vs GRUB — Why I Switched</span>
+            <span class="port-desc">My reasoning for switching bootloaders and how to set it up</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">linux</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/notes/blob/main/fish-shell.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">Why I Use Fish Shell</span>
+            <span class="port-desc">Features that make fish worth switching to from bash</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">linux</span><span class="port-arrow">→</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Security -->
+    <section>
+      <p class="section-label">Security</p>
+      <div class="port-grid">
+
+        <a class="port-card" href="https://github.com/yourusername/notes/blob/main/nmap-guide.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">Getting Started With Nmap</span>
+            <span class="port-desc">Personal notes on using Nmap for network reconnaissance</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">tools</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/notes/blob/main/firewalld.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">firewalld Basics and My Setup</span>
+            <span class="port-desc">How firewalld zones work and the rules I run on my machine</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">security</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/notes/blob/main/ssh-hardening.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">SSH Hardening Checklist</span>
+            <span class="port-desc">The exact steps I take to lock down SSH on every machine I set up</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">security</span><span class="port-arrow">→</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer">&lt;/zyne&gt; &nbsp;·&nbsp; built with html &amp; css</footer>
+
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    function applyTheme(t) { root.classList.toggle('light', t === 'light'); icon.textContent = t === 'light' ? '☾' : '☀'; }
+    function toggleTheme() { const next = root.classList.contains('light') ? 'dark' : 'light'; localStorage.setItem('theme', next); applyTheme(next); }
+    applyTheme(localStorage.getItem('theme') || 'dark');
+  </script>
+
+</body>
+</html>

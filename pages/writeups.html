@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writeups — Zyne</title>
+  <meta name="description" content="TryHackMe and CTF writeups by Zyne." />
+  <meta name="author" content="Zyne" />
+  <meta name="theme-color" content="#0e0e0f" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0e0f'/><rect x='6' y='20' width='14' height='4' rx='1' fill='%23e8e8e8'/></svg>" />
+  <link rel="stylesheet" href="../assets/css/inner.css" />
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">
+    <span id="theme-icon">☀</span>
+  </button>
+
+  <main class="card">
+
+    <a class="back-btn" href="../index.html"><span class="back-arrow">←</span> back</a>
+
+    <header>
+      <h1 class="page-title">Writeups</h1>
+      <p class="page-sub">TryHackMe rooms and CTF challenges — documented step by step</p>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- TryHackMe — TO ADD: copy any port-card block, update href, port-title, port-desc, port-tag -->
+    <section>
+      <p class="section-label">TryHackMe</p>
+      <div class="port-grid">
+
+        <a class="port-card" href="https://github.com/yourusername/tryhackme-writeups/blob/main/mr-robot.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">Mr Robot CTF</span>
+            <span class="port-desc">Full walkthrough — enumeration, privilege escalation, all 3 flags</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">medium</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/tryhackme-writeups/blob/main/nmap.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">Nmap Room</span>
+            <span class="port-desc">Notes and techniques from the Nmap scanning and enumeration room</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">easy</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/tryhackme-writeups/blob/main/linux-privesc.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">Linux Privilege Escalation</span>
+            <span class="port-desc">Common privesc techniques — SUID, cron jobs, weak permissions</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">medium</span><span class="port-arrow">→</span></div>
+        </a>
+
+        <a class="port-card" href="https://github.com/yourusername/tryhackme-writeups/blob/main/advent-of-cyber.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">Advent of Cyber</span>
+            <span class="port-desc">Day by day notes from the Advent of Cyber challenge</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">easy</span><span class="port-arrow">→</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CTF -->
+    <section>
+      <p class="section-label">CTF</p>
+      <div class="port-grid">
+
+        <a class="port-card" href="https://github.com/yourusername/ctf-writeups/blob/main/picoctf-2024.md" target="_blank" rel="noopener noreferrer">
+          <div class="port-info">
+            <span class="port-title">picoCTF 2024</span>
+            <span class="port-desc">Selected challenge writeups from picoCTF 2024</span>
+          </div>
+          <div class="port-meta"><span class="port-tag">ctf</span><span class="port-arrow">→</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer">&lt;/zyne&gt; &nbsp;·&nbsp; built with html &amp; css</footer>
+
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    function applyTheme(t) { root.classList.toggle('light', t === 'light'); icon.textContent = t === 'light' ? '☾' : '☀'; }
+    function toggleTheme() { const next = root.classList.contains('light') ? 'dark' : 'light'; localStorage.setItem('theme', next); applyTheme(next); }
+    applyTheme(localStorage.getItem('theme') || 'dark');
+  </script>
+
+</body>
+</html>

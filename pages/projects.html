@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Projects — Andre</title>
+        <meta
+            name="description"
+            content="Security scripts, tools, and Linux projects by Zyne."
+        />
+        <meta name="author" content="Zyne" />
+        <meta name="theme-color" content="#0e0e0f" />
+        <meta property="og:title" content="Projects — Andre" />
+        <meta
+            property="og:description"
+            content="Security scripts, tools, and Linux projects by Andre."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://andreviaaa.github.io/pages/projects.html"
+        />
+        <link
+            rel="canonical"
+            href="https://andreviaaa.github.io/pages/projects.html"
+        />
+        <meta name="twitter:card" content="summary" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0e0f'/><rect x='6' y='20' width='14' height='4' rx='1' fill='%23e8e8e8'/></svg>"
+        />
+        <link rel="stylesheet" href="../assets/css/inner.css" />
+    </head>
+    <body>
+        <button
+            class="toggle-btn"
+            onclick="toggleTheme()"
+            title="Toggle light/dark mode"
+            aria-label="Toggle light/dark mode"
+        >
+            <span id="theme-icon">☀</span>
+        </button>
+
+        <main class="card">
+            <a class="back-btn" href="../index.html"
+                ><span class="back-arrow">←</span> back</a
+            >
+
+            <header>
+                <h1 class="page-title">Projects</h1>
+                <p class="page-sub">
+                    Scripts, tools, and builds — all source on GitHub
+                </p>
+            </header>
+
+            <div class="divider"></div>
+
+            <!-- Bash / Shell — TO ADD: copy any port-card block, update href, port-title, port-desc, port-tag -->
+            <section>
+                <p class="section-label">HTML, CSS &amp; JS</p>
+                <div class="port-grid">
+                    <a
+                        class="port-card"
+                        href="https://github.com/andreviaaa/carrd"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="port-info">
+                            <span class="port-title"
+                                >PERSONAL WEBPAGE CARRD UI - v2</span
+                            >
+                            <span class="port-desc"
+                                >Not a great design for a website in this
+                                century but all the things i need to showcase is
+                                there</span
+                            >
+                        </div>
+                        <div class="port-meta">
+                            <span class="port-tag">web</span
+                            ><span class="port-arrow">→</span>
+                        </div>
+                    </a>
+
+                    <a
+                        class="port-card"
+                        href="https://github.com/andreviaaa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="port-info">
+                            <span class="port-title"
+                                >Letter Page (Not Avail Now)</span
+                            >
+                            <span class="port-desc">Simple Cute Webpage </span>
+                        </div>
+                        <div class="port-meta">
+                            <span class="port-tag">web</span
+                            ><span class="port-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Python -->
+            <section>
+                <p class="section-label">Python</p>
+                <div class="port-grid">
+                    <a
+                        class="port-card"
+                        href="https://github.com/andreviaaa/ziprack"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="port-info">
+                            <span class="port-title"
+                                >ZipRack - Bruteforce Attack Script</span
+                            >
+                            <span class="port-desc"
+                                >Simple python script for cracking password of a
+                                password protected zip file using a wordlist.
+                                For educational purpose only</span
+                            >
+                        </div>
+                        <div class="port-meta">
+                            <span class="port-tag">python</span
+                            ><span class="port-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <!-- Documentation -->
+            <section>
+                <p class="section-label">Documentation</p>
+                <div class="port-grid">
+                    <a
+                        class="port-card"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="port-info">
+                            <span class="port-title"
+                                >Arch Linux Hardening Guide</span
+                            >
+                            <span class="port-desc"
+                                >Full writeup of my personal system hardening —
+                                LUKS, firewalld, SSH, and more</span
+                            >
+                        </div>
+                        <div class="port-meta">
+                            <span class="port-tag">linux</span
+                            ><span class="port-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <footer class="footer">
+                Designed & developed by &lt;/andre&gt; | 2026
+            </footer>
+        </main>
+
+        <script>
+            const root = document.documentElement;
+            const icon = document.getElementById("theme-icon");
+            function applyTheme(t) {
+                root.classList.toggle("light", t === "light");
+                icon.textContent = t === "light" ? "☾" : "☀";
+            }
+            function toggleTheme() {
+                const next = root.classList.contains("light")
+                    ? "dark"
+                    : "light";
+                localStorage.setItem("theme", next);
+                applyTheme(next);
+            }
+            applyTheme(localStorage.getItem("theme") || "dark");
+        </script>
+    </body>
+</html>

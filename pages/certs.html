@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certifications — Zyne</title>
+  <meta name="description" content="Certifications and badges earned by Zyne." />
+  <meta name="author" content="Zyne" />
+  <meta name="theme-color" content="#0e0e0f" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0e0f'/><rect x='6' y='20' width='14' height='4' rx='1' fill='%23e8e8e8'/></svg>" />
+  <link rel="stylesheet" href="../assets/css/inner.css" />
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">
+    <span id="theme-icon">☀</span>
+  </button>
+
+  <main class="card">
+
+    <a class="back-btn" href="../index.html"><span class="back-arrow">←</span> back</a>
+
+    <header>
+      <h1 class="page-title">Certifications</h1>
+      <p class="page-sub">Courses, certs, and badges — verified and linked where possible</p>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- Certificates — TO ADD: copy any cert-card block, update href, cert-title, cert-issuer, cert-year -->
+    <!-- No link? Change <a class="cert-card" href="..."> to <div class="cert-card static"> and close with </div> -->
+    <section>
+      <p class="section-label">Certificates</p>
+      <div class="cert-grid">
+
+        <a class="cert-card" href="https://coursera.org/verify/example" target="_blank" rel="noopener noreferrer">
+          <div class="cert-info">
+            <span class="cert-title">Google Cybersecurity Certificate</span>
+            <span class="cert-issuer">Google — via Coursera</span>
+          </div>
+          <div class="cert-meta"><span class="cert-year">2024</span><span class="cert-arrow">→</span></div>
+        </a>
+
+        <a class="cert-card" href="https://netacad.com" target="_blank" rel="noopener noreferrer">
+          <div class="cert-info">
+            <span class="cert-title">Linux Essentials</span>
+            <span class="cert-issuer">Cisco Networking Academy</span>
+          </div>
+          <div class="cert-meta"><span class="cert-year">2024</span><span class="cert-arrow">→</span></div>
+        </a>
+
+        <a class="cert-card" href="https://netacad.com" target="_blank" rel="noopener noreferrer">
+          <div class="cert-info">
+            <span class="cert-title">Cybersecurity Essentials</span>
+            <span class="cert-issuer">Cisco Networking Academy</span>
+          </div>
+          <div class="cert-meta"><span class="cert-year">2024</span><span class="cert-arrow">→</span></div>
+        </a>
+
+        <a class="cert-card" href="https://skillsbuild.org" target="_blank" rel="noopener noreferrer">
+          <div class="cert-info">
+            <span class="cert-title">Cybersecurity Fundamentals</span>
+            <span class="cert-issuer">IBM SkillsBuild</span>
+          </div>
+          <div class="cert-meta"><span class="cert-year">2024</span><span class="cert-arrow">→</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Badges -->
+    <section>
+      <p class="section-label">Badges &amp; Achievements</p>
+      <div class="cert-grid">
+
+        <a class="cert-card" href="https://tryhackme.com/p/yourusername" target="_blank" rel="noopener noreferrer">
+          <div class="cert-info">
+            <span class="cert-title">TryHackMe — Top 10%</span>
+            <span class="cert-issuer">TryHackMe</span>
+          </div>
+          <div class="cert-meta"><span class="cert-year">2024</span><span class="cert-arrow">→</span></div>
+        </a>
+
+        <a class="cert-card" href="https://tryhackme.com/p/yourusername" target="_blank" rel="noopener noreferrer">
+          <div class="cert-info">
+            <span class="cert-title">7 Day Streak Badge</span>
+            <span class="cert-issuer">TryHackMe</span>
+          </div>
+          <div class="cert-meta"><span class="cert-year">2024</span><span class="cert-arrow">→</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer">&lt;/zyne&gt; &nbsp;·&nbsp; built with html &amp; css</footer>
+
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    function applyTheme(t) { root.classList.toggle('light', t === 'light'); icon.textContent = t === 'light' ? '☾' : '☀'; }
+    function toggleTheme() { const next = root.classList.contains('light') ? 'dark' : 'light'; localStorage.setItem('theme', next); applyTheme(next); }
+    applyTheme(localStorage.getItem('theme') || 'dark');
+  </script>
+
+</body>
+</html>

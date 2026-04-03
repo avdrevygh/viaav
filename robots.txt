@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /404.html
+
+Allow: /
+Allow: /pages/
+Allow: /assets/
+
+Sitemap: https://andreviaaa.github.io/sitemap.xml
