@@ -1,13 +1,13 @@
 ### ***Personal portfolio site***
 
-Live at: [https://andreviaaa.github.io](https://andreviaaa.github.io)
+Live at: [https://avdrevygh.github.io](https://avdrevygh.github.io)
 
 ---
 
 ## Folder Structure
 
 ```
-andreviaaa.github.io/
+avdrevygh.github.io/
 ├── index.html               — main landing page
 ├── 404.html                 — custom not found page
 ├── robots.txt               — search engine crawler rules
