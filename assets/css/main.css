@@ -15,26 +15,7 @@
 html {
     scroll-behavior: smooth;
 }
-@keyframes blink {
-    0%,
-    100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-}
-/* ── Status badge ── */
-.status {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-}
-.status::first-letter {
-    color: #4caf50;
-    animation: blink 2s ease-in-out infinite;
-}
+
 .pgp {
     font-family: var(--mono);
     font-size: 0.58rem;
@@ -61,46 +42,6 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text);
-}
-@keyframes glitch {
-    0% {
-        text-shadow: none;
-        transform: none;
-    }
-    10% {
-        text-shadow:
-            -2px 0 #ff00cc,
-            2px 0 #00ffff;
-        transform: skewX(-2deg);
-    }
-    12% {
-        text-shadow: none;
-        transform: none;
-    }
-    20% {
-        text-shadow:
-            2px 0 #ff00cc,
-            -2px 0 #00ffff;
-        transform: skewX(1deg);
-    }
-    22% {
-        text-shadow: none;
-        transform: none;
-    }
-    30% {
-        text-shadow:
-            -1px 0 #ff00cc,
-            1px 0 #00ffff;
-        transform: skewX(-1deg);
-    }
-    32% {
-        text-shadow: none;
-        transform: none;
-    }
-    100% {
-        text-shadow: none;
-        transform: none;
-    }
 }
 
 /* ── Focus ring ── */
@@ -233,18 +174,18 @@ button,
 .section-label {
     font-family: var(--mono);
     font-size: 0.65rem;
-    color: var(--muted);
+    color: var(--highlight);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
 }
 .section-label::before {
     content: "[ ";
-    color: var(--border);
+    color: var(--text);
 }
 .section-label::after {
     content: " ]";
-    color: var(--border);
+    color: var(--text);
 }
 
 /* ── Footer ── */
@@ -261,14 +202,14 @@ button,
 .handle {
     font-family: var(--mono);
     font-size: 0.72rem;
-    color: var(--text);
+    color: var(--muted);
     letter-spacing: 0.1em;
     margin-bottom: 0.3rem;
     transition: color var(--trans);
     cursor: default;
 }
 .handle:hover {
-    color: var(--text);
+    color: var(--muted);
 }
 .name {
     font-family: var(--mono);
@@ -277,9 +218,6 @@ button,
     color: var(--highlight);
     letter-spacing: -0.02em;
     line-height: 1.1;
-    animation:
-        fadein 0.4s ease 0.05s both,
-        glitch 1.5s ease 0.8s 1 forwards;
 }
 .subheading {
     font-size: 0.8rem;

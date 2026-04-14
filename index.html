@@ -16,8 +16,8 @@
             content="Cybersecurity enthusiast and Linux nerd. Breaking things, learning how they work, and building tools along the way."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://andreviaaa.github.io/" />
-        <link rel="canonical" href="https://andreviaaa.github.io/" />
+        <meta property="og:url" content="https://avdrevygh.github.io/" />
+        <link rel="canonical" href="https://avdrevygh.github.io/" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Andre — Cybersecurity Enthusiast" />
         <meta
@@ -40,9 +40,7 @@
         <main class="card">
             <!-- ── Header ── -->
             <header>
-                <p class="handle">
-                    @andreviaaa <span class="status">● online</span>
-                </p>
+                <p class="handle">[ not my real name ]</p>
                 <h1 class="name">Andre Joseph</h1>
                 <p class="subheading">
                     Cybersecurity Enthusiast &nbsp;|&nbsp; Linux Enjoyer
@@ -84,14 +82,14 @@
 
                     <a
                         class="social-pill"
-                        href="https://github.com/andreviaaa"
+                        href="https://github.com/avdrevygh"
                         target="_blank"
                         rel="noopener noreferrer"
                         >github</a
                     >
                     <a
                         class="social-pill"
-                        href="mailto://heyalbins@gmail.com"
+                        href="mailto:heyalbins@gmail.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         >email</a
@@ -110,27 +108,6 @@
                 <nav class="links">
                     <a
                         class="link-item"
-                        href="https://github.com/andreviaaa"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <div class="link-left">
-                            <div class="link-icon">
-                                <img
-                                    src="assets/icons/github.svg"
-                                    alt="GitHub"
-                                />
-                            </div>
-                            <div class="link-info">
-                                <span class="link-name">GitHub</span>
-                                <span class="link-handle">github.com/andreviaaa</span>
-                            </div>
-                        </div>
-                        <span class="link-arrow">→</span>
-                    </a>
-
-                    <a
-                        class="link-item"
                         href="https://www.linkedin.com/in/albinshiby"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -144,7 +121,9 @@
                             </div>
                             <div class="link-info">
                                 <span class="link-name">LinkedIn</span>
-                                <span class="link-handle">linkedin.com/in/albinshiby</span>
+                                <span class="link-handle"
+                                    >linkedin.com/in/albinshiby</span
+                                >
                             </div>
                         </div>
                         <span class="link-arrow">→</span>
@@ -165,7 +144,9 @@
                             </div>
                             <div class="link-info">
                                 <span class="link-name">Resume</span>
-                                <span class="link-handle">rxresu.me/albinsh/a1</span>
+                                <span class="link-handle"
+                                    >rxresu.me/albinsh/a1</span
+                                >
                             </div>
                         </div>
                         <span class="link-arrow">→</span>
@@ -185,7 +166,9 @@
                             </div>
                             <div class="link-info">
                                 <span class="link-name">TryHackMe</span>
-                                <span class="link-handle">tryhackme.com/p/andrev</span>
+                                <span class="link-handle"
+                                    >tryhackme.com/p/andrev</span
+                                >
                             </div>
                         </div>
                         <span class="link-arrow">→</span>
@@ -217,14 +200,15 @@
                 <div class="port-grid">
                     <a
                         class="port-card"
-                        href="https://snowflake.torproject.org/"
+                        href="/photos/index.html"
                         target="_blank"
                     >
                         <div class="port-info">
-                            <span class="port-title">Use Snowflakes Now</span>
+                            <span class="port-title"
+                                >Image Gallery (Private)</span
+                            >
                             <span class="port-desc"
-                                >Use Snowflake to give censorship the slip in
-                                places where Tor is blocked</span
+                                >Captured moments or other memorable pics</span
                             >
                         </div>
                         <div class="port-meta">
@@ -261,18 +245,45 @@
         <script>
             const root = document.documentElement;
             const icon = document.getElementById("theme-icon");
-            function applyTheme(t) {
-                root.classList.toggle("light", t === "light");
-                icon.textContent = t === "light" ? "☾" : "☀";
-            }
-            function toggleTheme() {
-                const next = root.classList.contains("light")
+
+            // System theme (fallback = light)
+            function getSystemTheme() {
+                return window.matchMedia("(prefers-color-scheme: dark)").matches
                     ? "dark"
                     : "light";
-                localStorage.setItem("theme", next);
+            }
+
+            // Apply theme
+            function applyTheme(theme) {
+                root.classList.toggle("light", theme === "light");
+                icon.textContent = theme === "light" ? "☾" : "☀";
+            }
+
+            // Get theme (session OR system)
+            function getTheme() {
+                try {
+                    return sessionStorage.getItem("theme") || getSystemTheme();
+                } catch {
+                    return getSystemTheme();
+                }
+            }
+
+            // Toggle theme (store in session only)
+            function toggleTheme() {
+                const current = root.classList.contains("light")
+                    ? "light"
+                    : "dark";
+                const next = current === "light" ? "dark" : "light";
+
+                try {
+                    sessionStorage.setItem("theme", next);
+                } catch {}
+
                 applyTheme(next);
             }
-            applyTheme(localStorage.getItem("theme") || "dark");
+
+            // Initial load
+            applyTheme(getTheme());
         </script>
     </body>
 </html>

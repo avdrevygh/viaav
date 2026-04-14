@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Photos — Andre</title>
+
+        <link rel="stylesheet" href="/assets/css/main.css" />
+
+        <style>
+            /* Layout FIX */
+            body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Main content */
+            .card {
+                flex: 1;
+                width: 100%;
+                max-width: var(--max-width);
+            }
+
+            /* Masonry */
+            .gallery {
+                column-count: 2;
+                column-gap: 0.6rem;
+            }
+            @media (min-width: 600px) {
+                .gallery {
+                    column-count: 3;
+                }
+            }
+            @media (min-width: 900px) {
+                .gallery {
+                    column-count: 4;
+                }
+            }
+
+            /* Frame */
+            .photo {
+                break-inside: avoid;
+                margin-bottom: 0.6rem;
+                cursor: pointer;
+
+                background: var(--surface);
+                padding: 4px;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+
+                opacity: 0;
+                transform: translateY(10px);
+                animation: fadeInUp 0.5s ease forwards;
+            }
+
+            .photo:nth-child(odd) {
+                animation-delay: 0.05s;
+            }
+            .photo:nth-child(even) {
+                animation-delay: 0.1s;
+            }
+
+            .photo img {
+                display: block;
+                width: 100%;
+                border-radius: 5px;
+
+                filter: grayscale(100%);
+                transition:
+                    filter 0.3s ease,
+                    transform 0.3s ease;
+            }
+
+            .photo:hover img {
+                filter: grayscale(0%);
+                transform: scale(1.03);
+            }
+
+            /* Animations */
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            @keyframes zoomIn {
+                from {
+                    transform: scale(0.96);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            /* Modal */
+            .modal {
+                position: fixed;
+                inset: 0;
+                background: var(--bg);
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 999;
+                animation: fadeIn 0.2s ease;
+            }
+
+            .modal img {
+                max-width: 95%;
+                max-height: 80%;
+                animation: zoomIn 0.25s ease;
+            }
+
+            .meta {
+                margin-top: 1rem;
+                text-align: center;
+                font-family: var(--mono);
+                font-size: 0.75rem;
+                color: var(--text);
+                animation: fadeIn 0.3s ease;
+            }
+
+            /* Footer full width */
+            footer {
+                width: 100%;
+                text-align: center;
+                margin-top: auto;
+                padding: 2rem 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Toggle -->
+        <button class="toggle-btn" onclick="toggleTheme()">
+            <span id="theme-icon">☀</span>
+        </button>
+
+        <main class="card">
+            <header>
+                <h1 class="name">Photos</h1>
+                <p class="subheading">Captured moments</p>
+            </header>
+
+            <div class="divider"></div>
+
+            <div class="gallery" id="gallery"></div>
+        </main>
+
+        <!-- ✅ Footer OUTSIDE -->
+        <footer class="footer">
+            © 2026 Andre Joseph
+            <br />
+            <span class="pgp"
+                >All images are my own. Do not use without permission.</span
+            >
+        </footer>
+
+        <!-- Modal -->
+        <div class="modal" id="modal">
+            <img id="modal-img" />
+            <div class="meta" id="meta"></div>
+        </div>
+
+        <script>
+            let photos = [];
+            let currentIndex = 0;
+
+            fetch("photos.json")
+                .then((res) => res.json())
+                .then((data) => {
+                    photos = data;
+                    renderPhotos();
+                });
+
+            function renderPhotos() {
+                const gallery = document.getElementById("gallery");
+
+                photos.forEach((p, i) => {
+                    const div = document.createElement("div");
+                    div.className = "photo";
+                    div.innerHTML = `<img src="${p.src}" loading="lazy">`;
+                    div.onclick = () => openModal(i);
+                    gallery.appendChild(div);
+                });
+            }
+
+            const modal = document.getElementById("modal");
+            const modalImg = document.getElementById("modal-img");
+            const meta = document.getElementById("meta");
+
+            function openModal(i) {
+                currentIndex = i;
+                updateModal();
+                modal.style.display = "flex";
+            }
+
+            function updateModal() {
+                const p = photos[currentIndex];
+                modalImg.src = p.src;
+                meta.innerHTML = `${p.caption}<br>${p.location} • ${p.date}`;
+            }
+
+            function closeModal() {
+                modal.style.display = "none";
+            }
+
+            modal.onclick = closeModal;
+
+            document.addEventListener("keydown", (e) => {
+                if (modal.style.display !== "flex") return;
+
+                if (e.key === "ArrowRight") {
+                    currentIndex = (currentIndex + 1) % photos.length;
+                    updateModal();
+                }
+                if (e.key === "ArrowLeft") {
+                    currentIndex =
+                        (currentIndex - 1 + photos.length) % photos.length;
+                    updateModal();
+                }
+                if (e.key === "Escape") closeModal();
+            });
+
+            /* Theme */
+
+            const root = document.documentElement;
+            const icon = document.getElementById("theme-icon");
+
+            function getSystemTheme() {
+                return window.matchMedia("(prefers-color-scheme: light)")
+                    .matches
+                    ? "light"
+                    : "dark";
+            }
+
+            function applyTheme(theme) {
+                root.classList.toggle("light", theme === "light");
+                icon.textContent = theme === "light" ? "☾" : "☀";
+            }
+
+            function getTheme() {
+                return sessionStorage.getItem("theme") || getSystemTheme();
+            }
+
+            function toggleTheme() {
+                const next = root.classList.contains("light")
+                    ? "dark"
+                    : "light";
+                sessionStorage.setItem("theme", next);
+                applyTheme(next);
+            }
+
+            applyTheme(getTheme());
+        </script>
+    </body>
+</html>
